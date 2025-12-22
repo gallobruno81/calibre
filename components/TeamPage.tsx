@@ -12,7 +12,7 @@ interface TeamPageProps {
 }
 
 export const TeamPage: React.FC<TeamPageProps> = ({ therapists, onBack }) => {
-  
+
   // Scroll to top when mounted
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -25,14 +25,14 @@ export const TeamPage: React.FC<TeamPageProps> = ({ therapists, onBack }) => {
         <RevealOnScroll>
           <div className="text-center max-w-3xl mx-auto mb-16">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-slate-200 bg-white text-slate-600 text-xs font-bold uppercase tracking-wider mb-6 shadow-sm">
-               <span className="w-2 h-2 rounded-full bg-[#84cc16]"></span>
-               Equipo Clínico Certificado
+              <span className="w-2 h-2 rounded-full bg-[#84cc16]"></span>
+              Equipo Clínico Certificado
             </div>
             <h1 className="text-4xl md:text-6xl font-extrabold text-slate-900 mb-6 tracking-tight">
-              Expertos en salud mental,<br/>
+              Expertos en salud mental,<br />
               <span className="relative inline-block px-2">
-                 <span className="absolute inset-0 bg-[#E9F5DB] rounded-full transform -skew-x-3 w-full h-full -z-10 block"></span>
-                 no motivadores.
+                <span className="absolute inset-0 bg-[#E9F5DB] rounded-full transform -skew-x-3 w-full h-full -z-10 block"></span>
+                no motivadores.
               </span>
             </h1>
             <p className="text-lg text-slate-500 font-medium leading-relaxed">
@@ -49,13 +49,13 @@ export const TeamPage: React.FC<TeamPageProps> = ({ therapists, onBack }) => {
                 <div className="flex flex-col sm:flex-row gap-6 mb-6">
                   {/* Avatar con Generador IA */}
                   <div className="w-32 h-32 sm:w-40 sm:h-40 shrink-0 rounded-[1.5rem] overflow-hidden relative shadow-md">
-                    <TherapistImage 
-                      therapist={therapist} 
+                    <TherapistImage
+                      therapist={therapist}
                       className="w-full h-full"
                       imgClassName="group-hover:scale-105"
                     />
                   </div>
-                  
+
                   {/* Header Info */}
                   <div>
                     <h3 className="text-2xl font-bold text-slate-900 mb-1">{therapist.name}</h3>
@@ -78,23 +78,23 @@ export const TeamPage: React.FC<TeamPageProps> = ({ therapists, onBack }) => {
 
                 {/* Details */}
                 <div className="space-y-4 flex-grow">
-                   <div className="bg-[#F8FAFC] p-4 rounded-3xl">
-                      <div className="flex items-center gap-2 mb-2 text-slate-400 text-xs font-bold uppercase tracking-wider">
-                         <BookOpen size={14} /> Formación
-                      </div>
-                      <p className="text-sm font-semibold text-slate-700">{therapist.education}</p>
-                   </div>
+                  <div className="bg-[#F8FAFC] p-4 rounded-3xl">
+                    <div className="flex items-center gap-2 mb-2 text-slate-400 text-xs font-bold uppercase tracking-wider">
+                      <BookOpen size={14} /> Formación
+                    </div>
+                    <p className="text-sm font-semibold text-slate-700">{therapist.education}</p>
+                  </div>
 
-                   <div>
-                      <h4 className="text-sm font-bold text-slate-900 mb-2">Enfoque Clínico</h4>
-                      <p className="text-slate-500 text-sm leading-relaxed">
-                        {therapist.bio}
-                      </p>
-                   </div>
+                  <div>
+                    <h4 className="text-sm font-bold text-slate-900 mb-2">Enfoque Clínico</h4>
+                    <p className="text-slate-500 text-sm leading-relaxed">
+                      {therapist.bio}
+                    </p>
+                  </div>
                 </div>
-                
+
                 <div className="mt-8 pt-4">
-                  <Button variant="outline" className="w-full justify-center text-sm" onClick={() => window.open('mailto:contacto@regulacion.corp')}>
+                  <Button variant="outline" className="w-full justify-center text-sm" onClick={() => { window.open('mailto:contacto@regulacion.corp'); }}>
                     Solicitar sesión con {therapist.name.split(' ')[1]}
                   </Button>
                 </div>
@@ -103,18 +103,18 @@ export const TeamPage: React.FC<TeamPageProps> = ({ therapists, onBack }) => {
           ))}
         </div>
       </Section>
-      
+
       <Section className="bg-[#F2F5F9] py-24 rounded-t-[3rem]">
-          <div className="text-center">
-             <h2 className="text-3xl font-bold text-slate-900 mb-6">¿Buscas un perfil específico?</h2>
-             <p className="text-slate-500 mb-8 max-w-2xl mx-auto">
-               Contamos con una red de más de 50 especialistas en distintas áreas de la salud mental ocupacional.
-             </p>
-             <div className="flex justify-center gap-4">
-                <Button variant="primary" onClick={onBack}>Volver al Inicio</Button>
-                <Button variant="white" onClick={() => window.location.href = '#contacto'}>Contactar Soporte</Button>
-             </div>
+        <div className="text-center">
+          <h2 className="text-3xl font-bold text-slate-900 mb-6">¿Buscas un perfil específico?</h2>
+          <p className="text-slate-500 mb-8 max-w-2xl mx-auto">
+            Contamos con una red de más de 50 especialistas en distintas áreas de la salud mental ocupacional.
+          </p>
+          <div className="flex justify-center gap-4">
+            <Button variant="primary" onClick={onBack}>Volver al Inicio</Button>
+            <Button variant="white" onClick={() => { window.location.href = '#contacto'; }}>Contactar Soporte</Button>
           </div>
+        </div>
       </Section>
     </div>
   );
