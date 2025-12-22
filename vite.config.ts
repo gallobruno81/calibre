@@ -15,8 +15,7 @@ export default defineConfig({
     }
   },
   // 'base' controla cómo se cargan los assets (imágenes, js).
-  // Si usas un dominio personalizado (www.tudominio.com), '/' es correcto.
-  // Si usas usuario.github.io/repo, GitHub Actions inyectará la ruta correcta si fuera necesario, 
-  // pero para Custom Domain en Hostinger, '/' es lo que necesitas.
-  base: '/',
+  // Para GitHub Pages con subdirectorio (usuario.github.io/repo), usar '/repo/'
+  // Para dominio personalizado (www.tudominio.com), cambiar a '/'
+  base: '/calibre/',
 })

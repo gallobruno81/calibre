@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://tu-usuario.github.io/tu-repo",
+  "homepage": "https://gallobruno81.github.io/calibre",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
