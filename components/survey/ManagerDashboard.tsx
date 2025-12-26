@@ -451,7 +451,7 @@ export const ManagerDashboard: React.FC<Props> = ({ company, onLogout }) => {
             <div className="p-6 bg-white rounded-2xl border border-slate-100 shadow-sm hover:border-[#e6f1d5] transition-all group">
                 <div className="flex justify-between items-center mb-4">
                     <h4 className="font-bold text-[#0f172a] text-lg">{name}</h4>
-                    <span className="text-xs font-bold bg-slate-100 px-3 py-1 rounded-full text-slate-500">{dataset.length} respuestas</span>
+                    <span className="text-xs font-bold bg-slate-100 px-3 py-1 rounded-full text-slate-500">{data.length} respuestas</span>
                 </div>
                 <div className="flex items-center gap-4">
                     <div className="flex-1 h-3 bg-slate-100 rounded-full overflow-hidden">
