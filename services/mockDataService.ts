@@ -69,7 +69,7 @@ export const generateDemoData = () => {
     id: 'int-1',
     date: now - (150 * MS_PER_DAY),
     title: 'Taller: Gestión del Estrés y Burnout',
-    description: 'Sesiones grupales para identificar disparadores de fatiga.',
+    description: 'Talleres grupales para identificar disparadores de fatiga.',
     type: 'WORKSHOP'
   });
 
@@ -112,6 +112,19 @@ export const generateDemoData = () => {
     if (team === 'Ventas') baseScore = 1.5; // Critical
     if (team === 'Ingeniería') baseScore = 2.8; // Warning
 
+    const demoComments = [
+      "El ritmo de entregas actual es insostenible.",
+      "Siento que mi trabajo es valorado pero faltan herramientas de foco.",
+      "Excelente ambiente de equipo, me siento muy apoyado.",
+      "La comunicación entre departamentos podría mejorar.",
+      "Demasiadas reuniones innecesarias que cortan el flujo.",
+      "Me gusta la libertad para proponer nuevas ideas.",
+      "A veces no sé exactamente cuáles son mis objetivos del mes.",
+      "Gran trabajo del equipo de liderazgo en la última crisis.",
+      "Siento cansancio acumulado, las pausas no son respetadas.",
+      "El taller de la semana pasada fue muy útil para el equipo."
+    ];
+
     responses.push({
       id: `phase3-${i}`,
       timestamp: now - (daysAgo * MS_PER_DAY),
@@ -124,7 +137,7 @@ export const generateDemoData = () => {
         psychologicalSafety: Math.min(5, Math.max(1, baseScore + (Math.random() * 2 - 0.5))),
         recognition: Math.min(5, Math.max(1, baseScore - 0.2 + (Math.random() * 2 - 0.5))),
       },
-      optionalComment: Math.random() > 0.8 ? "Se nota el cambio en el ambiente últimamente." : undefined
+      optionalComment: Math.random() > 0.7 ? demoComments[Math.floor(Math.random() * demoComments.length)] : undefined
     });
   }
 

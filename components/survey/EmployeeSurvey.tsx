@@ -272,13 +272,20 @@ export const EmployeeSurvey: React.FC<Props> = ({ company, onComplete }) => {
         ></div>
       </div>
 
-      <div className="relative z-10 max-w-2xl mx-auto px-6 py-8 flex-grow flex flex-col justify-center w-full">
+      <div className="relative z-10 max-w-2xl mx-auto px-6 pt-12 pb-8 flex-grow flex flex-col w-full">
 
-        {/* Question Counter (Removed redundant header, kept spacing) */}
-        <div className="mb-8"></div>
+        {/* Welcome Header */}
+        <div className={`mb-12 text-center transition-all duration-700 delay-100 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'}`}>
+          <h2 className="text-3xl md:text-4xl font-display font-light text-[#0f172a] mb-4 tracking-tight">
+            Hola, <span className="font-normal italic">queremos escucharte.</span>
+          </h2>
+          <p className="text-slate-500 font-medium text-sm md:text-base max-w-lg mx-auto leading-relaxed">
+            Este es un pulso rápido para entender cómo estás hoy. Tu respuesta es <span className="text-[#0f172a] font-bold">100% anónima</span> y nos ayuda a construir un mejor lugar para todos.
+          </p>
+        </div>
 
         {/* Question / Step Container */}
-        <div className={`transition-all duration-300 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+        <div className={`transition-all duration-500 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
 
           {!isCommentStep && currentQuestion && (
             <MetricCard

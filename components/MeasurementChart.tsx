@@ -1,5 +1,5 @@
 import React from 'react';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Cell } from 'recharts';
 import { MetricData } from '../types';
 
 const data: MetricData[] = [
@@ -40,6 +40,16 @@ const CustomTooltip = ({ active, payload, label }: any) => {
 };
 
 export const MeasurementChart: React.FC = () => {
+  const getMeasurementColor = (value: number) => {
+    // Map 0-100 to 1-5
+    const val = value / 20;
+    if (val >= 4.2) return '#10b981'; // Óptimo
+    if (val >= 3.4) return '#84cc16'; // Bueno
+    if (val >= 2.8) return '#f59e0b'; // Estable
+    if (val >= 2.0) return '#f97316'; // Bajo
+    return '#e11d48'; // Crítico
+  };
+
   return (
     <div className="w-full h-[350px]">
       <ResponsiveContainer width="100%" height="100%">
@@ -54,21 +64,25 @@ export const MeasurementChart: React.FC = () => {
           barGap={4}
         >
           <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e4e4e7" />
-          <XAxis 
-            dataKey="name" 
-            tick={{ fill: '#71717a', fontSize: 12, fontWeight: 500 }} 
-            axisLine={false} 
+          <XAxis
+            dataKey="name"
+            tick={{ fill: '#71717a', fontSize: 12, fontWeight: 500 }}
+            axisLine={false}
             tickLine={false}
             dy={10}
           />
-          <YAxis 
-            hide 
+          <YAxis
+            hide
             domain={[0, 100]}
           />
-          <Tooltip content={<CustomTooltip />} cursor={{fill: 'rgba(0,0,0,0.03)'}} />
+          <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(0,0,0,0.03)' }} />
           <Legend wrapperStyle={{ paddingTop: '20px' }} />
           <Bar dataKey="antes" name="Medición Inicial" fill="#d4d4d8" radius={[4, 4, 0, 0]} maxBarSize={50} />
-          <Bar dataKey="despues" name="Post Intervención" fill="#059669" radius={[4, 4, 0, 0]} maxBarSize={50} />
+          <Bar dataKey="despues" name="Post Intervención" radius={[4, 4, 0, 0]} maxBarSize={50}>
+            {data.map((entry, index) => (
+              <Cell key={`cell-${index}`} fill={getMeasurementColor(entry.despues)} />
+            ))}
+          </Bar>
         </BarChart>
       </ResponsiveContainer>
     </div>

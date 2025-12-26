@@ -31,12 +31,12 @@ export const CountrySelector: React.FC<CountrySelectorProps> = ({ selected, onCh
 
   return (
     <div className="relative" ref={dropdownRef}>
-      <button 
+      <button
         onClick={() => setIsOpen(!isOpen)}
         className="flex items-center gap-2 px-3 py-2 rounded-full bg-slate-50 hover:bg-slate-100 transition-colors border border-slate-200 text-slate-700 text-sm font-bold"
       >
-        <span className="text-base">{currentCountry.flag}</span>
-        <span className="hidden sm:inline">{currentCountry.name}</span>
+        <Globe size={16} className="text-slate-500" />
+        <span>{currentCountry.name}</span>
         <ChevronDown size={14} className={`transition-transform ${isOpen ? 'rotate-180' : ''}`} />
       </button>
 
@@ -47,9 +47,8 @@ export const CountrySelector: React.FC<CountrySelectorProps> = ({ selected, onCh
               <button
                 key={code}
                 onClick={() => handleSelect(code)}
-                className={`w-full text-left px-4 py-3 text-sm font-medium hover:bg-slate-50 flex items-center gap-3 transition-colors ${selected === code ? 'bg-slate-50 text-slate-900' : 'text-slate-500'}`}
+                className={`w-full text-left px-5 py-3 text-sm font-bold hover:bg-slate-50 flex items-center gap-3 transition-colors ${selected === code ? 'bg-slate-50 text-[#141414]' : 'text-slate-500'}`}
               >
-                <span className="text-lg">{countryContent[code].flag}</span>
                 {countryContent[code].name}
               </button>
             ))}

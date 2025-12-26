@@ -20,82 +20,95 @@ export const MeasurementPage: React.FC<MeasurementPageProps> = ({ onBack }) => {
   return (
     <div className="min-h-screen bg-[#FDFDFD] selection:bg-[#E9F5DB] selection:text-slate-900 font-sans">
 
-      {/* 1. HERO SECTION */}
-      <div className="pt-32 pb-24 px-6 max-w-[1400px] mx-auto">
-        <RevealOnScroll>
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            {/* Left Content */}
-            <div className="order-2 lg:order-1 lg:pl-12">
+      {/* Hero Section - AyaRX Inspired Layout (Transferred from ServicesPage) */}
+      <Section className="pt-24 pb-12 md:pt-32 bg-white">
+        <div className="max-w-[1440px] mx-auto px-4 md:px-8">
+          <div className="flex flex-col lg:flex-row gap-12 items-center">
 
+            {/* Left Content - Text and Controls */}
+            <div className="w-full lg:w-1/2 flex flex-col justify-center">
+              <RevealOnScroll>
+                <h1 className="text-5xl md:text-6xl lg:text-7xl font-medium text-slate-900 leading-[1.05] mb-8 tracking-tight text-balance">
+                  Medimos lo que <br />
+                  <span className="bg-[#E9F5DB] px-3 py-1 rounded-2xl inline-block text-slate-900">realmente importa.</span>
+                </h1>
 
-              <h1 className="text-4xl md:text-6xl font-semibold text-slate-900 leading-[1.1] mb-6 tracking-tight">
-                Medimos lo que
-                <span className="bg-[#E9F5DB] px-3 py-1 rounded-xl inline-block text-slate-900 ml-2">
-                  realmente importa.
-                </span>
-              </h1>
+                <p className="text-xl md:text-2xl text-slate-500 mb-10 leading-relaxed font-normal max-w-xl">
+                  Indicadores claros para evitar la rotación y recuperar el foco de tu equipo. Deje de adivinar, empiece a saber.
+                </p>
 
-              <p className="text-lg md:text-xl text-slate-500 mb-10 leading-relaxed max-w-lg font-medium">
-                Indicadores claros para prevenir burnout y mejorar la retención. Deje de adivinar, empiece a saber.
-              </p>
+                <div className="flex flex-wrap gap-4 mb-12">
+                  <Button
+                    variant="primary"
+                    onClick={() => document.querySelector('#action-section')?.scrollIntoView({ behavior: 'smooth' })}
+                    className="border-none"
+                    withArrow
+                  >
+                    Solicitar Propuesta
+                  </Button>
+                  <Button
+                    variant="lime"
+                    onClick={() => navigate('/demo/impacto')}
+                    className="border-none font-medium"
+                  >
+                    Ver Radar de Impacto
+                  </Button>
+                </div>
 
-              <div className="flex flex-wrap gap-4 items-center">
-                <Button variant="primary" onClick={() => document.querySelector('#action-section')?.scrollIntoView({ behavior: 'smooth' })} withArrow>
-                  Solicitar Propuesta
-                </Button>
-                <Button variant="lime" onClick={() => navigate('/demo/impacto')}>
-                  Ver Demo (Panel)
-                </Button>
-              </div>
+                {/* Trust Indicator - Avatars and Number */}
+                <div className="flex items-center gap-6">
+                  <div className="flex -space-x-4">
+                    {[1, 2, 3, 4].map((i) => (
+                      <div key={i} className="w-14 h-14 rounded-full border-4 border-white overflow-hidden bg-slate-100 shadow-sm">
+                        <img src={`https://i.pravatar.cc/100?img=${i + 10}`} className="w-full h-full object-cover" alt="User" />
+                      </div>
+                    ))}
+                  </div>
+                  <div>
+                    <div className="text-2xl font-bold text-slate-900 leading-none">+50</div>
+                    <div className="text-slate-500 text-sm font-medium mt-1">directores confían en nosotros</div>
+                  </div>
+                </div>
+              </RevealOnScroll>
+            </div>
 
-              <div className="mt-12 flex items-center gap-4 text-sm font-bold text-slate-400">
-                <div className="flex -space-x-3">
-                  {[1, 2, 3, 4].map(i => (
-                    <div key={i} className="w-10 h-10 rounded-full border-2 border-white bg-slate-200 flex items-center justify-center text-[10px] overflow-hidden">
-                      <img src={`https://i.pravatar.cc/100?img=${i + 10}`} alt="User" />
+            {/* Right Content - Tall Image with Floating Cards */}
+            <div className="w-full lg:w-1/2 relative">
+              <RevealOnScroll>
+                <div className="relative rounded-[3rem] overflow-hidden h-[750px] w-full shadow-2xl border border-slate-100">
+                  <img
+                    src="/assets/hr_hero_modern.png"
+                    alt="HR Manager"
+                    className="h-full w-full object-cover object-center transition-transform duration-1000 hover:scale-105"
+                  />
+
+                  {/* Overlay Card 1: Stat (Top Right) */}
+                  <div className="absolute top-10 right-8 bg-white/95 backdrop-blur-sm p-6 rounded-[2rem] shadow-lg border border-slate-100 max-w-[200px] animate-in slide-in-from-right-10 fade-in duration-1000">
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className="p-2 bg-green-100 rounded-lg text-green-700"><TrendingUp size={20} /></div>
+                      <span className="text-xs font-bold text-slate-400 uppercase">Vitalidad</span>
                     </div>
-                  ))}
+                    <p className="text-3xl font-bold text-slate-900">+18%</p>
+                    <p className="text-xs text-green-600 font-bold mt-1">vs mes anterior</p>
+                  </div>
+
+                  {/* Overlay Card 2: Status (Bottom Left) */}
+                  <div className="absolute bottom-10 left-8 bg-white p-8 rounded-[2rem] shadow-xl text-slate-900 max-w-[280px] animate-in slide-in-from-bottom-10 fade-in duration-1000 delay-200 border border-slate-100">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                      <span className="text-sm font-bold text-slate-500">Sistema Activo</span>
+                    </div>
+                    <p className="text-base text-slate-600 leading-relaxed font-medium italic">
+                      "Calibre detectó el problema de comunicación en el Q2."
+                    </p>
+                  </div>
                 </div>
-                <p>+50 directores confían en nosotros</p>
-              </div>
+              </RevealOnScroll>
             </div>
 
-            {/* Right Image (Complex Composition) */}
-            <div className="order-1 lg:order-2 relative px-4">
-              <div className="relative rounded-[3rem] overflow-hidden shadow-2xl border-8 border-white">
-                <img
-                  src="/assets/hr_hero_modern.png"
-                  alt="HR Manager"
-                  className="w-full h-[600px] object-cover hover:scale-105 transition-transform duration-700"
-                />
-
-                {/* Overlay Card 1: Stat */}
-                <div className="absolute top-10 right-10 bg-white/95 backdrop-blur-sm p-5 rounded-2xl shadow-lg border border-slate-100 max-w-[180px] animate-in slide-in-from-right-10 fade-in duration-1000">
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="p-2 bg-green-100 rounded-lg text-green-700"><TrendingUp size={18} /></div>
-                    <span className="text-xs font-bold text-slate-400 uppercase">Vitalidad</span>
-                  </div>
-                  <p className="text-2xl font-bold text-slate-900">+18%</p>
-                  <p className="text-xs text-green-600 font-bold mt-1">vs mes anterior</p>
-                </div>
-
-                {/* Overlay Card 2: Status */}
-                <div className="absolute bottom-10 left-10 bg-slate-900 p-6 rounded-3xl shadow-xl text-white max-w-[240px] animate-in slide-in-from-bottom-10 fade-in duration-1000 delay-200">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
-                    <span className="text-sm font-bold opacity-80">Sistema Activo</span>
-                  </div>
-                  <p className="text-sm opacity-80 leading-relaxed">
-                    "Calibre detectó el problema de comunicación en el Q2."
-                  </p>
-                </div>
-              </div>
-              {/* Decorative Blob */}
-              <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-tr from-[#E9F5DB]/50 to-purple-50/50 rounded-full blur-3xl opacity-60"></div>
-            </div>
           </div>
-        </RevealOnScroll>
-      </div>
+        </div>
+      </Section>
 
 
 
@@ -110,10 +123,10 @@ export const MeasurementPage: React.FC<MeasurementPageProps> = ({ onBack }) => {
                 Nuestra Metodología
               </div>
               <h2 className="text-3xl md:text-5xl font-bold mb-6 text-slate-900 leading-tight">
-                Ciclo de Salud <br /> Corporativa.
+                Ciclo de Rendimiento <br /> Corporativo.
               </h2>
               <p className="text-slate-500 mb-10 leading-relaxed text-lg font-medium max-w-lg">
-                Un sistema continuo de medición, análisis e intervención que se repite y mejora en el tiempo.
+                Un sistema continuo de Pulsos, análisis e intervención que se repite y mejora en el tiempo.
               </p>
 
 
@@ -122,7 +135,7 @@ export const MeasurementPage: React.FC<MeasurementPageProps> = ({ onBack }) => {
                 {[
                   {
                     title: "1. Pulso Mensual",
-                    desc: "Encuestas breves de 6 preguntas.",
+                    desc: "Pulsos breves de 6 preguntas.",
                     sub: "Frecuencia mensual para detectar tendencias ágiles.",
                     link: "/demo/pulso",
                     linkText: "Ver Demo Pulso"
@@ -132,12 +145,12 @@ export const MeasurementPage: React.FC<MeasurementPageProps> = ({ onBack }) => {
                     desc: "Patrones de riesgo automáticos.",
                     sub: "Identificación de burnout y fricción en equipos.",
                     link: "/demo/impacto",
-                    linkText: "Ver Demo Panel"
+                    linkText: "Ver Radar de Impacto"
                   },
                   {
-                    title: "3. Programas de Bienestar",
+                    title: "3. Salud Organizacional",
                     desc: "Intervenciones dirigidas.",
-                    sub: "Sesiones terapéuticas, espacios grupales o trabajo con managers.",
+                    sub: "Protocolos clínicos, espacios grupales o trabajo estratégico con managers.",
                     link: "/programas",
                     linkText: "Ver Programas"
                   },
@@ -172,7 +185,7 @@ export const MeasurementPage: React.FC<MeasurementPageProps> = ({ onBack }) => {
 
               <div className="flex flex-col sm:flex-row gap-4 mt-10">
                 <Button variant="lime" onClick={() => navigate('/demo/impacto')} withArrow>
-                  Ver Dashboard
+                  Ver Radar de Impacto
                 </Button>
               </div>
             </div>
@@ -211,9 +224,9 @@ export const MeasurementPage: React.FC<MeasurementPageProps> = ({ onBack }) => {
             <div className="inline-block p-4 bg-[#E9F5DB] rounded-2xl text-[#0f172a] mb-8 shadow-sm">
               <MessageCircle size={32} />
             </div>
-            <h2 className="text-4xl font-bold mb-6 text-[#0f172a] leading-tight">Transformamos sensaciones en datos.</h2>
+            <h2 className="text-4xl font-bold mb-6 text-[#0f172a] leading-tight">Transformamos el ruido en datos.</h2>
             <p className="text-slate-600 text-lg mb-8 leading-relaxed font-medium">
-              Utilizamos una encuesta anónima de 6 variables (Entusiasmo, Vitalidad, Claridad, Comunicación, Seguridad y Reconocimiento) para darte KPIs clínicos claros y accionables, que se repite en el tiempo para medir cambio real, no percepciones aisladas.
+              Utilizamos un Pulso anónimo de 6 variables (Entusiasmo, Vitalidad, Claridad, Comunicación, Seguridad y Reconocimiento) para darte KPIs clínicos claros y accionables, que se repite en el tiempo para medir cambio real, no percepciones aisladas.
             </p>
             <div className="flex flex-wrap gap-4 items-center text-xs font-bold text-slate-500 uppercase tracking-wider">
               <span className="flex items-center gap-2 bg-slate-50 px-3 py-1.5 rounded-lg border border-slate-200"><div className="w-2 h-2 bg-[#10b981] rounded-full"></div> Claro</span>
@@ -247,10 +260,10 @@ export const MeasurementPage: React.FC<MeasurementPageProps> = ({ onBack }) => {
               </div>
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
                 <Button variant="primary" type="submit" className="w-full justify-center" withArrow>
-                  Comenzar Medición
+                  Lanzar Primer Pulso
                 </Button>
                 <Button variant="lime" type="button" onClick={() => navigate('/demo/impacto')} className="w-full justify-center" withArrow>
-                  Ver Demo (Panel)
+                  Ver Radar de Impacto
                 </Button>
               </div>
             </form>

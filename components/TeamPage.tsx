@@ -95,7 +95,7 @@ export const TeamPage: React.FC<TeamPageProps> = ({ therapists, onBack }) => {
 
                 <div className="mt-8 pt-4">
                   <Button variant="outline" className="w-full justify-center text-sm" onClick={() => { window.open('mailto:contacto@regulacion.corp'); }}>
-                    Solicitar sesión con {therapist.name.split(' ')[1]}
+                    Consultar disponibilidad estratégica con {therapist.name.split(' ')[1]}
                   </Button>
                 </div>
               </div>

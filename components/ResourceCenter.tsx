@@ -90,7 +90,7 @@ const resources: Resource[] = [
     },
     {
         id: '1',
-        title: 'Guía de Desconexión Digital',
+        title: 'Protocolo de Higiene Digital',
         category: 'Bienestar',
         type: 'Guide',
         image: 'https://images.unsplash.com/photo-1511871893393-82e9c16b81e3?auto=format&fit=crop&q=80',
@@ -139,7 +139,7 @@ const resources: Resource[] = [
         category: 'Bienestar',
         type: 'Video',
         image: 'https://images.unsplash.com/photo-1544367563-12123d8965cd?auto=format&fit=crop&q=80',
-        description: 'Sesión grabada con nuestros expertos sobre cómo funciona el sistema nervioso bajo estrés.',
+        description: 'Encuentro grabado con nuestros expertos sobre cómo funciona el sistema nervioso bajo estrés.',
         readTime: '25 min video'
     }
 ];

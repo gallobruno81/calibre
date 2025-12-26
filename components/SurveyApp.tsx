@@ -13,7 +13,8 @@ const ViewLoader = () => (
     </div>
 );
 import { isSupabaseConfigured, saveSupabaseConfig, clearSupabaseConfig, LS_SUPABASE_URL, LS_SUPABASE_KEY } from '../lib/supabaseClient';
-import { ArrowRight, MessageCircle, Eye, CheckCircle, Database, Lock, X, Wind, Sun, Coffee, Smile, Move, Quote, Heart, LayoutDashboard, Brain, Users, Zap, Sparkles, HelpCircle } from 'lucide-react';
+import { ArrowRight, MessageCircle, Eye, CheckCircle, Database, Lock, X, Wind, Sun, Coffee, Smile, Move, Quote, Heart, LayoutDashboard, Brain, Users, Zap, Sparkles, HelpCircle, BarChart3 } from 'lucide-react';
+import { DemoControlBar } from './DemoControlBar';
 
 // --- Wellness Capsules Data (COLORS UPDATED TO COOL TONES) ---
 const CAPSULES = [
@@ -263,7 +264,7 @@ export const SurveyApp: React.FC<SurveyAppProps> = ({ onBack, initialMode }) => 
                             onClick={handleStartResultsDemo}
                             className="px-8 py-4 bg-white text-[#0f172a] border border-slate-200 hover:border-[#e6f1d5] rounded-full font-bold text-lg hover:bg-[#e6f1d5]/20 transition-all w-full sm:w-auto flex items-center justify-center gap-2 shadow-sm"
                         >
-                            <LayoutDashboard size={20} /> Demo Resultados
+                            <LayoutDashboard size={20} /> Demo Plataforma
                         </button>
                     </div>
                 </div>
@@ -360,148 +361,110 @@ export const SurveyApp: React.FC<SurveyAppProps> = ({ onBack, initialMode }) => 
         </div>
     );
 
-    const renderDemoNavbar = () => (
-        <nav className="bg-[#0f172a] text-white py-3 px-6 sticky top-0 z-50 shadow-md flex flex-col sm:flex-row gap-4 justify-between items-center sm:h-[60px]">
-            <div className="flex items-center gap-2 font-bold text-[#E9F5DB]">
-                <div className="w-2 h-2 rounded-full bg-[#E9F5DB] animate-pulse"></div>
-                <span className="opacity-80">Calibre.</span>Demo
-            </div>
 
-            <div className="flex gap-1 bg-white/10 p-1 rounded-full backdrop-blur-sm order-3 sm:order-2">
-                <button
-                    onClick={() => {
-                        handleStartEmployeeDemo();
-                        window.history.pushState({}, '', '/demo/pulso');
-                    }}
-                    className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all ${currentView === AppView.EMPLOYEE_SURVEY ? 'bg-[#E9F5DB] text-[#0f172a] shadow-sm' : 'text-slate-400 hover:text-white hover:bg-white/5'}`}
-                >
-                    Pulso Empleado
-                </button>
-                <button
-                    onClick={() => {
-                        handleStartResultsDemo();
-                        window.history.pushState({}, '', '/demo/impacto');
-                    }}
-                    className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all ${currentView === AppView.MANAGER_DASHBOARD ? 'bg-[#E9F5DB] text-[#0f172a] shadow-sm' : 'text-slate-400 hover:text-white hover:bg-white/5'}`}
-                >
-                    Panel de Impacto
-                </button>
-            </div>
 
-            <div className="relative order-2 sm:order-2 flex items-center">
-                <button
-                    onClick={() => setShowDemoHelp(!showDemoHelp)}
-                    className="p-1.5 rounded-full text-slate-400 hover:text-white hover:bg-white/10 transition-colors"
-                    aria-label="Ayuda de la Demo"
-                >
-                    <HelpCircle size={18} />
-                </button>
+    // ... (keep creating functions above)
 
-                {/* Help Popover */}
-                {showDemoHelp && (
-                    <div className="absolute top-full left-1/2 -translate-x-1/2 mt-4 w-72 bg-white rounded-xl shadow-xl p-4 text-slate-900 z-50 animate-in fade-in slide-in-from-top-2 border border-slate-100 ring-1 ring-slate-900/5">
-                        <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white rotate-45 border-t border-l border-slate-100"></div>
-                        <div className="relative z-10 space-y-3">
-                            <div>
-                                <h4 className="font-bold text-sm flex items-center gap-2 mb-1">
-                                    <div className="w-2 h-2 rounded-full bg-[#E9F5DB] border border-[#365314]"></div> Pulso Empleado
-                                </h4>
-                                <p className="text-xs text-slate-500 leading-relaxed">
-                                    Vista del colaborador. Responde la encuesta anónima para generar datos instantáneos.
-                                </p>
-                            </div>
-                            <div className="h-px bg-slate-100"></div>
-                            <div>
-                                <h4 className="font-bold text-sm flex items-center gap-2 mb-1">
-                                    <div className="w-2 h-2 rounded-full bg-[#0f172a]"></div> Panel de Impacto
-                                </h4>
-                                <p className="text-xs text-slate-500 leading-relaxed">
-                                    Vista del Manager. Analiza resultados por <strong>equipos</strong>, detecta tendencias y recibe <strong>recomendaciones IA</strong>.
-                                </p>
-                            </div>
-                            <button
-                                onClick={() => setShowDemoHelp(false)}
-                                className="w-full mt-2 py-1.5 text-xs font-bold text-[#365314] bg-[#E9F5DB] rounded-lg hover:bg-[#d9edc2] transition-colors"
-                            >
-                                Entendido
-                            </button>
-                        </div>
-                    </div>
-                )}
-            </div>
+    // Helper to map AppView to simple string for the control bar
+    const getCurrentDemoMode = (): 'employee' | 'manager' => {
+        return currentView === AppView.MANAGER_DASHBOARD ? 'manager' : 'employee';
+    };
 
-            <button
-                onClick={() => window.location.href = '/diagnostico'}
-                className="text-xs font-bold text-slate-400 hover:text-white transition-colors flex items-center gap-1 order-2 sm:order-3"
-            >
-                <X size={14} /> Volver al Sitio
-            </button>
-        </nav>
-    );
+    const handleDemoModeChange = (mode: 'employee' | 'manager') => {
+        if (mode === 'employee') {
+            handleStartEmployeeDemo();
+            window.history.pushState({}, '', '/demo/pulso');
+        } else {
+            handleStartResultsDemo();
+            window.history.pushState({}, '', '/demo/impacto');
+        }
+    };
 
     return (
-        <>
+        <div className={window.location.pathname.startsWith('/demo') ? "pt-16" : ""}>
             {currentView === AppView.LANDING && renderLanding()}
 
-            {/* Render Demo Navbar only when in specific views and URL determines it's a demo */}
-            {(currentView === AppView.MANAGER_DASHBOARD || currentView === AppView.EMPLOYEE_SURVEY) && window.location.pathname.startsWith('/demo') && renderDemoNavbar()}
+            {/* Render Demo Control Bar for Demo Views */}
+            {(currentView === AppView.MANAGER_DASHBOARD || currentView === AppView.EMPLOYEE_SURVEY) && window.location.pathname.startsWith('/demo') && (
+                <>
+                    <DemoControlBar
+                        currentView={getCurrentDemoMode()}
+                        onViewChange={handleDemoModeChange}
+                        onShowHelp={() => setShowDemoHelp(true)}
+                    />
+
+                    {/* Help Popover (Reusing existing state logic, just positioning it globally or fixed) */}
+                    {showDemoHelp && (
+                        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/20 backdrop-blur-sm p-4" onClick={() => setShowDemoHelp(false)}>
+                            <div className="bg-white rounded-2xl shadow-2xl p-6 max-w-sm w-full animate-in zoom-in-95" onClick={e => e.stopPropagation()}>
+                                <div className="flex justify-between items-center mb-4">
+                                    <h3 className="font-bold text-lg text-[#141414]">Guía de la Demo</h3>
+                                    <button onClick={() => setShowDemoHelp(false)} className="p-1 hover:bg-slate-100 rounded-full"><X size={20} /></button>
+                                </div>
+                                <div className="space-y-4">
+                                    <div className="p-4 bg-slate-50 rounded-xl">
+                                        <h4 className="font-bold text-sm flex items-center gap-2 mb-2 text-[#141414]">
+                                            <Users size={16} className="text-slate-500" /> Vista Colaborador
+                                        </h4>
+                                        <p className="text-sm text-slate-600 leading-relaxed">
+                                            Experimenta la encuesta como lo haría tu equipo. Rápida, anónima y móvil.
+                                        </p>
+                                    </div>
+                                    <div className="p-4 bg-slate-50 rounded-xl">
+                                        <h4 className="font-bold text-sm flex items-center gap-2 mb-2 text-[#141414]">
+                                            <BarChart3 size={16} className="text-slate-500" /> Vista Manager
+                                        </h4>
+                                        <p className="text-sm text-slate-600 leading-relaxed">
+                                            Accede al panel de resultados. Analiza métricas por equipo y recibe insights de IA.
+                                        </p>
+                                    </div>
+                                    <button
+                                        onClick={() => setShowDemoHelp(false)}
+                                        className="w-full py-3 font-bold text-[#141414] bg-[#E6F1D5] rounded-xl hover:bg-[#d9edc2] transition-colors"
+                                    >
+                                        ¡Entendido!
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                </>
+            )}
 
             <Suspense fallback={<ViewLoader />}>
-                {currentView === AppView.MANAGER_DASHBOARD && company && (
-                    <ManagerDashboard
-                        company={company}
-                        onLogout={handleLogout}
-                    />
-                )}
+                <div className={`transition-opacity duration-500 ${currentView !== AppView.LANDING ? 'bg-slate-50/50' : ''}`}>
+                    {currentView === AppView.MANAGER_DASHBOARD && company && (
+                        <ManagerDashboard
+                            company={company}
+                            onLogout={handleLogout}
+                        />
+                    )}
 
-                {currentView === AppView.EMPLOYEE_SURVEY && company && (
-                    <EmployeeSurvey
-                        company={company}
-                        onComplete={() => setCurrentView(AppView.SURVEY_COMPLETE)}
-                    />
-                )}
+                    {currentView === AppView.EMPLOYEE_SURVEY && company && (
+                        <EmployeeSurvey
+                            company={company}
+                            onComplete={() => setCurrentView(AppView.SURVEY_COMPLETE)}
+                        />
+                    )}
+                </div>
             </Suspense>
 
             {currentView === AppView.SURVEY_COMPLETE && (
-                <div className="min-h-screen bg-gradient-to-br from-slate-50 via-slate-100 to-slate-200 flex items-center justify-center p-6 animate-in fade-in duration-700 font-sans relative overflow-hidden">
-                    {/* Background Decoration */}
-                    <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[#e6f1d5] rounded-full mix-blend-multiply filter blur-[80px] opacity-30 animate-pulse"></div>
-                    <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-100 rounded-full mix-blend-multiply filter blur-[80px] opacity-30 animate-pulse animation-delay-2000"></div>
-
+                <div className="min-h-[80vh] flex items-center justify-center p-6 animate-in fade-in duration-700 font-sans relative overflow-hidden">
+                    {/* Simplified Completion View without full screen take over */}
                     <div className="max-w-md w-full text-center relative z-10">
-
-                        <div className="bg-white/80 backdrop-blur-xl p-8 rounded-3xl shadow-xl mb-8 relative overflow-hidden border border-white/50">
-                            <div className="w-16 h-16 bg-[#e6f1d5] text-[#0f172a] rounded-full flex items-center justify-center mx-auto mb-6 shadow-inner">
+                        <div className="bg-white p-8 rounded-3xl shadow-xl mb-8 border border-slate-100">
+                            <div className="w-16 h-16 bg-[#F2F5F9] text-[#141414] rounded-full flex items-center justify-center mx-auto mb-6">
                                 <CheckCircle size={32} />
                             </div>
-                            <h2 className="text-3xl font-bold text-[#0f172a] mb-2 tracking-tight">¡Registro Exitoso!</h2>
-                            <p className="text-slate-600 font-medium">Tus respuestas son 100% anónimas.</p>
+                            <h2 className="text-3xl font-bold text-[#141414] mb-2 tracking-tight">¡Registro Exitoso!</h2>
+                            <p className="text-slate-500 font-medium">Tus respuestas son 100% anónimas.</p>
                         </div>
-
-                        {/* Wellness Capsule Card */}
-                        {capsule && (
-                            <div className="bg-white p-8 rounded-3xl shadow-xl transform transition-all hover:scale-[1.02] border border-slate-100 relative overflow-hidden group">
-                                <div className="absolute top-0 left-0 w-1 h-full bg-[#0f172a]"></div>
-                                <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider mb-6 ${capsule.color} bg-opacity-20`}>
-                                    <capsule.icon size={14} /> Insight del Día
-                                </div>
-
-                                <h3 className="text-2xl font-bold text-[#0f172a] mb-4 leading-tight">{capsule.title}</h3>
-                                <p className="text-slate-600 text-lg leading-relaxed mb-6 font-medium">
-                                    {capsule.text}
-                                </p>
-
-                                <div className="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden">
-                                    <div className="w-full h-full bg-[#0f172a] animate-[width_3s_ease-out]"></div>
-                                </div>
-                            </div>
-                        )}
-
                         <button
                             onClick={handleBackToHome}
                             className="mt-8 text-slate-500 font-bold hover:text-[#0f172a] transition-colors flex items-center justify-center gap-2 mx-auto"
                         >
-                            Volver al inicio <ArrowRight size={16} />
+                            <ArrowRight size={16} className="rotate-180" /> Volver al inicio
                         </button>
                     </div>
                 </div>
@@ -521,12 +484,7 @@ export const SurveyApp: React.FC<SurveyAppProps> = ({ onBack, initialMode }) => 
                             </div>
                             <h3 className="text-2xl font-bold text-[#0f172a]">Conectar Supabase</h3>
                         </div>
-
-                        <p className="text-slate-600 text-sm mb-6 leading-relaxed">
-                            Ingresa las credenciales API de tu proyecto para habilitar la persistencia de datos real.
-                            Encuéntralas en <strong>Project Settings</strong> {'>'} <strong>API</strong>.
-                        </p>
-
+                        {/* ... Keep the rest of the form ... */}
                         <form onSubmit={handleSaveConfig} className="space-y-4">
                             <div>
                                 <label className="block text-xs font-bold text-slate-500 uppercase mb-2">Project URL</label>
@@ -580,6 +538,7 @@ export const SurveyApp: React.FC<SurveyAppProps> = ({ onBack, initialMode }) => 
                     </div>
                 </div>
             )}
-        </>
+        </div>
     );
 };
+

@@ -39,4 +39,6 @@ export interface CountryContent {
   painPoint: string;
   regulationTag?: string;
   currency: string;
+  therapyLabel: string;
+  programLabel: string;
 }

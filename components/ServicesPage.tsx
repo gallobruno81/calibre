@@ -41,74 +41,103 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onBack, onContact, c
   return (
     <div className="min-h-screen bg-[#FDFDFD] selection:bg-[#E9F5DB] selection:text-slate-900 font-sans">
 
-      {/* Hero Section - Immersive Card Style */}
-      <Section className="pt-24 pb-4 md:pt-28 bg-white">
-        <div className="max-w-[1440px] mx-auto px-4 md:px-6">
-          <div className="relative rounded-[2rem] overflow-hidden h-[80vh] min-h-[600px] w-full shadow-2xl group border border-slate-100">
+      {/* Hero Section - AyaRX Inspired Layout */}
+      <Section className="pt-24 pb-12 md:pt-32 bg-white">
+        <div className="max-w-[1440px] mx-auto px-4 md:px-8">
+          <div className="flex flex-col lg:flex-row gap-12 items-center">
 
-            {/* Background Image - Doctor/Professional */}
-            <img
-              src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?q=80&w=2864&auto=format&fit=crop"
-              className="absolute inset-0 w-full h-full object-cover object-[center_30%] transition-transform duration-1000 group-hover:scale-105"
-              alt="Professional Doctor"
-            />
-
-            {/* Gradient Overlay for Text Readability - Fade from White on Left */}
-            <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/80 to-transparent"></div>
-            <div className="absolute inset-0 bg-gradient-to-t from-white/90 via-transparent to-transparent"></div>
-
-            {/* Content Container - Aligned Bottom Left */}
-            <div className="relative z-10 h-full flex flex-col justify-end pb-12 px-8 md:px-12 lg:px-16 max-w-2xl">
+            {/* Left Content - Text and Controls */}
+            <div className="w-full lg:w-1/2 flex flex-col justify-center">
               <RevealOnScroll>
-                {/* Badge - Smaller and cleaner */}
-                <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full border border-slate-200 bg-white/50 backdrop-blur-sm text-slate-600 text-[10px] font-bold uppercase tracking-wider mb-4">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#84cc16]"></span>
-                  Soluciones Clínicas
-                </div>
-
-                {/* Headline - Significantly Smaller to match reference */}
-                <h1 className="text-3xl md:text-4xl lg:text-5xl font-medium text-slate-900 leading-[1.1] mb-6 tracking-tight">
+                <h1 className="text-5xl md:text-6xl lg:text-7xl font-medium text-slate-900 leading-[1.05] mb-8 tracking-tight text-balance">
                   Intervenciones que <br />
-                  <span className="bg-[#E9F5DB] px-2 py-0 rounded-lg inline-block text-slate-900 mx-1">mueven</span>
+                  <span className="bg-[#E9F5DB] px-3 py-1 rounded-2xl inline-block text-slate-900">mueven</span> <br />
                   indicadores
                 </h1>
 
-                {/* Subtitle */}
-                <p className="text-base md:text-lg text-slate-600 mb-8 leading-relaxed font-medium max-w-md">
-                  Soluciones clínicas que combinan medición, intervención y validación de impacto.
+                <p className="text-xl md:text-2xl text-slate-500 mb-10 leading-relaxed font-normal max-w-xl">
+                  Soluciones clínicas que evitan la rotación y recuperan el foco de tu equipo.
                 </p>
 
-                {/* Buttons - Only Primary */}
-                <div className="flex flex-wrap gap-4">
+                <div className="flex flex-wrap gap-4 mb-12">
                   <Button
                     variant="primary"
-                    onClick={onContact}
-                    withArrow
-                    className="shadow-lg hover:shadow-xl hover:scale-105 border-none px-6 py-3 text-sm rounded-full"
+                    onClick={() => document.getElementById('programas-section')?.scrollIntoView({ behavior: 'smooth' })}
+                    className="border-none"
                   >
-                    Conocer plataforma
+                    Ver programas de impacto
                   </Button>
+                  <Button
+                    variant="lime"
+                    onClick={() => navigate('/diagnostico')}
+                    className="border-none font-medium"
+                  >
+                    Radar Calibre (demo)
+                  </Button>
+                </div>
+
+                {/* Trust Indicator - Avatars and Number */}
+                <div className="flex items-center gap-6">
+                  <div className="flex -space-x-4">
+                    {[
+                      "https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&q=80&w=100",
+                      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=100",
+                      "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=100",
+                      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=100"
+                    ].map((avatar, idx) => (
+                      <div key={idx} className="w-14 h-14 rounded-full border-4 border-white overflow-hidden bg-slate-100 shadow-sm">
+                        <img src={avatar} className="w-full h-full object-cover" alt="User" />
+                      </div>
+                    ))}
+                  </div>
+                  <div>
+                    <div className="text-2xl font-bold text-slate-900 leading-none">50000+</div>
+                    <div className="text-slate-500 text-sm font-medium mt-1">talentos protegidos</div>
+                  </div>
                 </div>
               </RevealOnScroll>
             </div>
 
-            {/* Floating Card - Bottom Right - Replaced with "Logical" Value Prop (Retention/Climate) */}
-            <div className="absolute bottom-8 right-8 md:bottom-12 md:right-12 bg-white/95 backdrop-blur-md p-5 rounded-[1.5rem] shadow-xl max-w-[320px] animate-in slide-in-from-bottom-10 fade-in duration-700 border border-slate-100 hidden md:block">
-              <div className="flex gap-4 items-start">
-                <div className="w-16 h-16 rounded-xl overflow-hidden shrink-0 bg-slate-100">
+            {/* Right Content - Tall Image with Floating Cards */}
+            <div className="w-full lg:w-1/2 relative">
+              <RevealOnScroll>
+                <div className="relative rounded-[3rem] overflow-hidden h-[750px] w-full shadow-2xl border border-slate-100">
                   <img
-                    src="https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&q=80&w=200"
-                    className="w-full h-full object-cover"
-                    alt="Team"
+                    src="/images/latino-psychologist.png"
+                    className="h-full w-full object-cover object-center transition-transform duration-1000 hover:scale-105"
+                    alt="Psicólogo Profesional"
                   />
+
+                  {/* Floating Identity Component - Top Right (Ver Demo) */}
+                  <div className="absolute top-8 right-8">
+                    <button
+                      onClick={() => window.location.href = '/demo/impacto'}
+                      className="bg-[#E9F5DB]/90 backdrop-blur-md text-slate-900 px-6 h-14 rounded-full font-bold flex items-center gap-2 shadow-lg hover:bg-[#E9F5DB] transition-all"
+                    >
+                      Ver Radar de Impacto <ArrowRight size={18} />
+                    </button>
+                  </div>
+
+                  {/* Floating Card 1: Impact / Status */}
+                  <div className="absolute bottom-10 right-8 bg-white/95 backdrop-blur-md p-6 rounded-[2rem] shadow-2xl max-w-[340px] animate-in slide-in-from-right-10 fade-in duration-700 border border-slate-100">
+                    <div className="flex gap-4 items-start">
+                      <div className="w-16 h-16 rounded-2xl overflow-hidden shrink-0 bg-slate-100 ring-4 ring-slate-100/50">
+                        <img
+                          src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&q=80&w=200"
+                          className="w-full h-full object-cover"
+                          alt="Health Professional"
+                        />
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-slate-900 text-base mb-1">Acompañamiento Estratégico</h4>
+                        <div className="bg-[#FEF9C3] text-[#854d0e] text-[10px] font-bold px-2 py-1 rounded-md inline-block uppercase tracking-wider mb-0.5">
+                          Atención rápida y eficaz
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <h4 className="font-bold text-slate-900 text-sm mb-1">Impacto en Retención</h4>
-                  <p className="text-slate-500 text-xs leading-relaxed font-medium">
-                    Reducimos la rotación y mejoramos el clima laboral con datos.
-                  </p>
-                </div>
-              </div>
+              </RevealOnScroll>
             </div>
 
           </div>
@@ -123,16 +152,14 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onBack, onContact, c
               <div className="grid lg:grid-cols-12 gap-12 items-center">
                 {/* Left Content */}
                 <div className="lg:col-span-6 relative z-10">
-                  <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-slate-200 bg-white text-slate-600 text-xs font-bold uppercase tracking-wider mb-8 shadow-sm">
-                    PASO 1: PUNTO DE PARTIDA
-                  </div>
+
 
                   <h2 className="text-3xl md:text-5xl font-medium mb-6 leading-[1.1] tracking-tight text-slate-900">
                     Diagnóstico <span className="bg-[#E9F5DB] px-3 py-0.5 rounded-xl inline-block text-slate-900">Inicial</span>
                   </h2>
 
                   <p className="text-slate-500 text-lg md:text-xl mb-8 leading-relaxed font-normal">
-                    Te ayudamos a entender qué necesita tu equipo hoy. Sin compromiso, escuchamos tus desafíos y te asesoramos sobre el mejor camino a seguir.
+                    Te ayudamos a entender qué necesita tu equipo hoy. Evitamos licencias y renuncias inesperadas escuchando tus desafíos antes de proponer.
                   </p>
 
                   <div className="space-y-4 mb-10">
@@ -168,7 +195,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onBack, onContact, c
                   <Button
                     variant="primary"
                     onClick={onContact}
-                    className="w-full md:w-auto px-8"
+                    className="w-full md:w-auto"
                     withArrow
                   >
                     Agendar Asesoría
@@ -212,266 +239,202 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onBack, onContact, c
       </Section>
 
       {/* PASO 2: Talleres Intensivos - Estilo AyaRX */}
-      <Section className="bg-white py-20">
+      <Section id="programas-section" className="bg-white py-20">
         <div className="max-w-[1400px] mx-auto px-6">
           <RevealOnScroll>
-            <div className="flex items-center justify-between mb-16 gap-4">
-              {/* Left: Social Icons */}
-              <div className="flex items-center gap-2 flex-shrink-0">
-                <a
-                  href="#"
-                  className="w-10 h-10 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center hover:bg-slate-200 transition-colors"
-                  aria-label="Youtube"
-                >
-                  <svg className="w-4 h-4 text-slate-700" fill="currentColor" viewBox="0 0 576 512">
-                    <path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"></path>
-                  </svg>
-                </a>
-                <a
-                  href="#"
-                  className="w-10 h-10 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center hover:bg-slate-200 transition-colors"
-                  aria-label="Help"
-                >
-                  <HelpCircle size={16} className="text-slate-700" />
-                </a>
-              </div>
-
-              {/* Center: Title with Highlight */}
-              <div className="flex-1 text-center min-w-0">
-                <h2 className="text-3xl md:text-4xl lg:text-6xl font-medium tracking-tight text-slate-900 leading-[1.1]">
-                  Programas <span className="bg-[#E9F5DB] px-3 py-0.5 rounded-xl inline-block mt-2 text-slate-900">intensivos</span>
-                </h2>
+            <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-16 gap-8">
+              <div className="flex items-center gap-3">
+                <span className="bg-[#141414] text-white text-[10px] font-bold px-4 py-2 rounded-full uppercase tracking-widest">
+                  Fase II
+                </span>
+                <h3 className="text-2xl md:text-3xl font-medium text-slate-900 tracking-tight">
+                  Programas de Rendimiento Clínico
+                </h3>
               </div>
 
               {/* Right: Button */}
               <div className="flex items-center flex-shrink-0">
                 <Button onClick={onContact} variant="primary" withArrow className="text-xs md:text-sm whitespace-nowrap">
-                  Catálogo PDF
+                  Propuesta Estratégica
                 </Button>
               </div>
             </div>
           </RevealOnScroll>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {/* Taller 1: Liderazgo */}
-            <RevealOnScroll>
-              <div className="bg-[#F8F8F8] p-8 rounded-[2.5rem] relative overflow-hidden group hover:shadow-lg transition-all duration-300 flex flex-col h-full aspect-square min-h-[320px]">
-                {/* Abstract wave line - single wide line like API Integration */}
-                <svg className="absolute top-0 left-0 w-full h-full opacity-70" viewBox="0 0 400 300" preserveAspectRatio="none" style={{ pointerEvents: 'none' }}>
-                  <path d="M-20,60 C60,100 140,80 220,120 C300,160 360,120 420,160" stroke="#D0E3F5" strokeWidth="18" fill="none" strokeLinecap="round" />
-                </svg>
-
-                <div className="relative z-10 flex flex-col flex-grow justify-end">
-                  {/* Header with icon and explore button */}
-                  <div className="flex items-start justify-between mb-auto">
-                    <div className="w-12 h-12 rounded-full bg-white border-2 border-slate-200 flex items-center justify-center group-hover:border-slate-300 transition-colors">
-                      <Users size={20} className="text-slate-700" />
+          {/* CATEGORY 1: INTERVENCIONES TÉCNICAS (GAP FILLING) */}
+          <div className="mb-12">
+            <div className="flex items-center gap-3 mb-8">
+              <span className="bg-[#E9F5DB] text-[#365314] text-[10px] font-bold px-4 py-2 rounded-full uppercase tracking-widest border border-[#d3e8b9]">
+                Módulo A
+              </span>
+              <h3 className="text-xl font-medium text-slate-900 tracking-tight">
+                Intervención de Crisis (Shock)
+              </h3>
+            </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {/* Taller 1: Liderazgo */}
+              <RevealOnScroll>
+                <div className="bg-[#F8F8F8] p-8 rounded-[2.5rem] relative overflow-hidden group hover:shadow-lg transition-all duration-300 flex flex-col h-full aspect-square min-h-[320px]">
+                  <svg className="absolute top-0 left-0 w-full h-full opacity-70" viewBox="0 0 400 300" preserveAspectRatio="none" style={{ pointerEvents: 'none' }}>
+                    <path d="M-20,60 C60,100 140,80 220,120 C300,160 360,120 420,160" stroke="#D0E3F5" strokeWidth="18" fill="none" strokeLinecap="round" />
+                  </svg>
+                  <div className="relative z-10 flex flex-col flex-grow justify-end">
+                    <div className="flex items-start justify-between mb-auto">
+                      <div className="w-12 h-12 rounded-full bg-white border-2 border-slate-200 flex items-center justify-center group-hover:border-slate-300 transition-colors">
+                        <Users size={20} className="text-slate-700" />
+                      </div>
                     </div>
-                    <button
-                      onClick={onContact}
-                      className="px-4 py-2 rounded-full bg-white border border-slate-200 text-slate-900 text-sm font-medium flex items-center gap-2 hover:border-slate-300 hover:shadow-sm transition-all"
-                    >
-                      Explorar <ArrowRight size={14} />
-                    </button>
-                  </div>
-
-                  {/* Category and hours */}
-                  <div className="flex items-center gap-2 mb-3">
-                    <span className="text-xs font-medium text-slate-500 uppercase tracking-wider">Liderazgo</span>
-                    <span className="text-xs text-slate-300">•</span>
-                    <span className="text-xs font-medium text-slate-500">4 horas</span>
-                  </div>
-
-                  {/* Title */}
-                  <h3 className="text-2xl font-medium text-black mb-3 leading-tight">Liderazgo seguro y cuidado</h3>
-
-                  {/* Description */}
-                  <p className="text-slate-500 text-base mb-0 leading-relaxed font-normal">
-                    Entrenamiento para managers: cómo dar soporte emocional sin convertirse en terapeuta de sus empleados.
-                  </p>
-                </div>
-              </div>
-            </RevealOnScroll>
-
-            {/* Taller 2: Regulación Emocional */}
-            <RevealOnScroll delay={100}>
-              <div className="bg-[#F8F8F8] p-8 rounded-[2.5rem] relative overflow-hidden group hover:shadow-lg transition-all duration-300 flex flex-col h-full aspect-square min-h-[320px]">
-                {/* Abstract wave line - single wide U like White label */}
-                <svg className="absolute top-0 left-0 w-full h-full opacity-70" viewBox="0 0 400 300" preserveAspectRatio="none" style={{ pointerEvents: 'none' }}>
-                  <path d="M-20,80 C80,20 160,20 240,40 C320,60 360,50 420,70" stroke="#D0E3F5" strokeWidth="18" fill="none" strokeLinecap="round" />
-                </svg>
-
-                <div className="relative z-10 flex flex-col flex-grow justify-end">
-                  <div className="flex items-start justify-between mb-auto">
-                    <div className="w-12 h-12 rounded-full bg-white border-2 border-slate-200 flex items-center justify-center group-hover:border-slate-300 transition-colors">
-                      <Heart size={20} className="text-slate-700" />
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="text-xs font-medium text-slate-500 uppercase tracking-wider">Gestión</span>
+                      <span className="text-xs text-slate-300">•</span>
+                      <span className="text-xs font-medium text-slate-500">4 horas</span>
                     </div>
-                    <button
-                      onClick={onContact}
-                      className="px-4 py-2 rounded-full bg-white border border-slate-200 text-slate-900 text-sm font-medium flex items-center gap-2 hover:border-slate-300 hover:shadow-sm transition-all"
-                    >
-                      Explorar <ArrowRight size={14} />
-                    </button>
+                    <h3 className="text-2xl font-medium text-black mb-3 leading-tight">Herramientas de Liderazgo y Contención</h3>
+                    <p className="text-slate-500 text-base mb-0 leading-relaxed font-normal">
+                      Entrenamiento para managers: cómo gestionar equipos bajo presión y brindar contención sin cruzar límites clínicos.
+                    </p>
                   </div>
-
-                  <div className="flex items-center gap-2 mb-3">
-                    <span className="text-xs font-medium text-slate-500 uppercase tracking-wider">Estrés</span>
-                    <span className="text-xs text-slate-300">•</span>
-                    <span className="text-xs font-medium text-slate-500">3 horas</span>
-                  </div>
-
-                  <h3 className="text-2xl font-medium text-black mb-3 leading-tight">Regulación emocional y resiliencia</h3>
-
-                  <p className="text-slate-500 text-base mb-0 leading-relaxed font-normal">
-                    Herramientas fisiológicas para desactivar la respuesta de lucha/huida en equipos de alta presión.
-                  </p>
                 </div>
-              </div>
-            </RevealOnScroll>
+              </RevealOnScroll>
 
-            {/* Taller 3: Mindfulness */}
-            <RevealOnScroll delay={200}>
-              <div className="bg-[#F8F8F8] p-8 rounded-[2.5rem] relative overflow-hidden group hover:shadow-lg transition-all duration-300 flex flex-col h-full aspect-square min-h-[320px]">
-                {/* Abstract wave line - single wide S shape like Quality Assurance */}
-                <svg className="absolute top-0 left-0 w-full h-full opacity-70" viewBox="0 0 400 300" preserveAspectRatio="none" style={{ pointerEvents: 'none' }}>
-                  <path d="M420,30 C360,5 280,20 240,5 C200,-10 160,5 120,20 C80,35 40,25 -20,40" stroke="#D0E3F5" strokeWidth="18" fill="none" strokeLinecap="round" />
-                </svg>
-
-                <div className="relative z-10 flex flex-col flex-grow justify-end">
-                  <div className="flex items-start justify-between mb-auto">
-                    <div className="w-12 h-12 rounded-full bg-white border-2 border-slate-200 flex items-center justify-center group-hover:border-slate-300 transition-colors">
-                      <Brain size={20} className="text-slate-700" />
+              {/* Taller 4: Comunicación -> Comunicación Asertiva */}
+              <RevealOnScroll delay={100}>
+                <div className="bg-[#F8F8F8] p-8 rounded-[2.5rem] relative overflow-hidden group hover:shadow-lg transition-all duration-300 flex flex-col h-full aspect-square min-h-[320px]">
+                  <svg className="absolute top-0 left-0 w-full h-full opacity-70" viewBox="0 0 400 300" preserveAspectRatio="none" style={{ pointerEvents: 'none' }}>
+                    <path d="M-20,50 C50,90 120,70 190,110 C260,150 330,110 420,130" stroke="#D0E3F5" strokeWidth="18" fill="none" strokeLinecap="round" />
+                  </svg>
+                  <div className="relative z-10 flex flex-col flex-grow justify-end">
+                    <div className="flex items-start justify-between mb-auto">
+                      <div className="w-12 h-12 rounded-full bg-white border-2 border-slate-200 flex items-center justify-center group-hover:border-slate-300 transition-colors">
+                        <MessageCircle size={20} className="text-slate-700" />
+                      </div>
                     </div>
-                    <button
-                      onClick={onContact}
-                      className="px-4 py-2 rounded-full bg-white border border-slate-200 text-slate-900 text-sm font-medium flex items-center gap-2 hover:border-slate-300 hover:shadow-sm transition-all"
-                    >
-                      Explorar <ArrowRight size={14} />
-                    </button>
-                  </div>
-
-                  <div className="flex items-center gap-2 mb-3">
-                    <span className="text-xs font-medium text-slate-500 uppercase tracking-wider">Productividad</span>
-                    <span className="text-xs text-slate-300">•</span>
-                    <span className="text-xs font-medium text-slate-500">2 horas</span>
-                  </div>
-
-                  <h3 className="text-2xl font-medium text-black mb-3 leading-tight">Mindfulness aplicado a reuniones</h3>
-
-                  <p className="text-slate-500 text-base mb-0 leading-relaxed font-normal">
-                    Prácticas breves de 3 minutos para "limpiar la memoria RAM" del equipo antes de tomar decisiones.
-                  </p>
-                </div>
-              </div>
-            </RevealOnScroll>
-
-            {/* Taller 4: Comunicación */}
-            <RevealOnScroll delay={300}>
-              <div className="bg-[#F8F8F8] p-8 rounded-[2.5rem] relative overflow-hidden group hover:shadow-lg transition-all duration-300 flex flex-col h-full aspect-square min-h-[320px]">
-                {/* Abstract wave line - single wide diagonal S */}
-                <svg className="absolute top-0 left-0 w-full h-full opacity-70" viewBox="0 0 400 300" preserveAspectRatio="none" style={{ pointerEvents: 'none' }}>
-                  <path d="M-20,50 C50,90 120,70 190,110 C260,150 330,110 420,130" stroke="#D0E3F5" strokeWidth="18" fill="none" strokeLinecap="round" />
-                </svg>
-
-                <div className="relative z-10 flex flex-col flex-grow justify-end">
-                  <div className="flex items-start justify-between mb-auto">
-                    <div className="w-12 h-12 rounded-full bg-white border-2 border-slate-200 flex items-center justify-center group-hover:border-slate-300 transition-colors">
-                      <MessageCircle size={20} className="text-slate-700" />
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="text-xs font-medium text-slate-500 uppercase tracking-wider">Comunicación</span>
+                      <span className="text-xs text-slate-300">•</span>
+                      <span className="text-xs font-medium text-slate-500">3 horas</span>
                     </div>
-                    <button
-                      onClick={onContact}
-                      className="px-4 py-2 rounded-full bg-white border border-slate-200 text-slate-900 text-sm font-medium flex items-center gap-2 hover:border-slate-300 hover:shadow-sm transition-all"
-                    >
-                      Explorar <ArrowRight size={14} />
-                    </button>
+                    <h3 className="text-2xl font-medium text-black mb-3 leading-tight">Comunicación Asertiva y Resolución de Conflictos</h3>
+                    <p className="text-slate-500 text-base mb-0 leading-relaxed font-normal">
+                      Desarticulación de patrones pasivo-agresivos. Herramientas técnicas para conversaciones difíciles y acuerdos de equipo.
+                    </p>
                   </div>
-
-                  <div className="flex items-center gap-2 mb-3">
-                    <span className="text-xs font-medium text-slate-500 uppercase tracking-wider">Comunicación</span>
-                    <span className="text-xs text-slate-300">•</span>
-                    <span className="text-xs font-medium text-slate-500">3 horas</span>
-                  </div>
-
-                  <h3 className="text-2xl font-medium text-black mb-3 leading-tight">Feedback efectivo y comunicación</h3>
-
-                  <p className="text-slate-500 text-base mb-0 leading-relaxed font-normal">
-                    Desarticulación de patrones pasivo-agresivos. Diferencia entre queja, pedido y reclamo.
-                  </p>
                 </div>
-              </div>
-            </RevealOnScroll>
+              </RevealOnScroll>
 
-            {/* Taller 5: Crisis */}
-            <RevealOnScroll delay={400}>
-              <div className="bg-[#F8F8F8] p-8 rounded-[2.5rem] relative overflow-hidden group hover:shadow-lg transition-all duration-300 flex flex-col h-full aspect-square min-h-[320px]">
-                {/* Abstract wave line - single wide flowing U */}
-                <svg className="absolute top-0 left-0 w-full h-full opacity-70" viewBox="0 0 400 300" preserveAspectRatio="none" style={{ pointerEvents: 'none' }}>
-                  <path d="M-20,70 C80,20 180,20 280,40 C330,50 360,45 420,55" stroke="#D0E3F5" strokeWidth="18" fill="none" strokeLinecap="round" />
-                </svg>
-
-                <div className="relative z-10 flex flex-col flex-grow justify-end">
-                  <div className="flex items-start justify-between mb-auto">
-                    <div className="w-12 h-12 rounded-full bg-white border-2 border-slate-200 flex items-center justify-center group-hover:border-slate-300 transition-colors">
-                      <ShieldCheck size={20} className="text-slate-700" />
+              {/* Taller 5: Crisis */}
+              <RevealOnScroll delay={200}>
+                <div className="bg-[#F8F8F8] p-8 rounded-[2.5rem] relative overflow-hidden group hover:shadow-lg transition-all duration-300 flex flex-col h-full aspect-square min-h-[320px]">
+                  <svg className="absolute top-0 left-0 w-full h-full opacity-70" viewBox="0 0 400 300" preserveAspectRatio="none" style={{ pointerEvents: 'none' }}>
+                    <path d="M-20,70 C80,20 180,20 280,40 C330,50 360,45 420,55" stroke="#D0E3F5" strokeWidth="18" fill="none" strokeLinecap="round" />
+                  </svg>
+                  <div className="relative z-10 flex flex-col flex-grow justify-end">
+                    <div className="flex items-start justify-between mb-auto">
+                      <div className="w-12 h-12 rounded-full bg-white border-2 border-slate-200 flex items-center justify-center group-hover:border-slate-300 transition-colors">
+                        <ShieldCheck size={20} className="text-slate-700" />
+                      </div>
                     </div>
-                    <button
-                      onClick={onContact}
-                      className="px-4 py-2 rounded-full bg-white border border-slate-200 text-slate-900 text-sm font-medium flex items-center gap-2 hover:border-slate-300 hover:shadow-sm transition-all"
-                    >
-                      Explorar <ArrowRight size={14} />
-                    </button>
-                  </div>
-
-                  <div className="flex items-center gap-2 mb-3">
-                    <span className="text-xs font-medium text-slate-500 uppercase tracking-wider">Crisis</span>
-                    <span className="text-xs text-slate-300">•</span>
-                    <span className="text-xs font-medium text-slate-500">2.5 horas</span>
-                  </div>
-
-                  <h3 className="text-2xl font-medium text-black mb-3 leading-tight">Gestión de crisis y estrés</h3>
-
-                  <p className="text-slate-500 text-base mb-0 leading-relaxed font-normal">
-                    Protocolos de recuperación inmediata para momentos críticos del negocio.
-                  </p>
-                </div>
-              </div>
-            </RevealOnScroll>
-
-            {/* Taller 6: Equilibrio y Bienestar */}
-            <RevealOnScroll delay={500}>
-              <div className="bg-[#F8F8F8] p-8 rounded-[2.5rem] relative overflow-hidden group hover:shadow-lg transition-all duration-300 flex flex-col h-full aspect-square min-h-[320px]">
-                {/* Abstract wave line - single wide gentle U */}
-                <svg className="absolute top-0 left-0 w-full h-full opacity-70" viewBox="0 0 400 300" preserveAspectRatio="none" style={{ pointerEvents: 'none' }}>
-                  <path d="M-20,60 C100,15 220,15 340,40 C360,45 370,50 420,55" stroke="#D0E3F5" strokeWidth="18" fill="none" strokeLinecap="round" />
-                </svg>
-
-                <div className="relative z-10 flex flex-col flex-grow justify-end">
-                  <div className="flex items-start justify-between mb-auto">
-                    <div className="w-12 h-12 rounded-full bg-white border-2 border-slate-200 flex items-center justify-center group-hover:border-slate-300 transition-colors">
-                      <Activity size={20} className="text-slate-700" />
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="text-xs font-medium text-slate-500 uppercase tracking-wider">Crisis</span>
+                      <span className="text-xs text-slate-300">•</span>
+                      <span className="text-xs font-medium text-slate-500">2.5 horas</span>
                     </div>
-                    <button
-                      onClick={onContact}
-                      className="px-4 py-2 rounded-full bg-white border border-slate-200 text-slate-900 text-sm font-medium flex items-center gap-2 hover:border-slate-300 hover:shadow-sm transition-all"
-                    >
-                      Explorar <ArrowRight size={14} />
-                    </button>
+                    <h3 className="text-2xl font-medium text-black mb-3 leading-tight">Gestión de Crisis y Estrés Agudo</h3>
+                    <p className="text-slate-500 text-base mb-0 leading-relaxed font-normal">
+                      Protocolos de recuperación inmediata para momentos críticos del negocio o cambios estructurales profundos.
+                    </p>
                   </div>
-
-                  <div className="flex items-center gap-2 mb-3">
-                    <span className="text-xs font-medium text-slate-500 uppercase tracking-wider">Bienestar</span>
-                    <span className="text-xs text-slate-300">•</span>
-                    <span className="text-xs font-medium text-slate-500">3.5 horas</span>
-                  </div>
-
-                  <h3 className="text-2xl font-medium text-black mb-3 leading-tight">Equilibrio trabajo-vida y prevención</h3>
-
-                  <p className="text-slate-500 text-base mb-0 leading-relaxed font-normal">
-                    Estrategias prácticas para mantener límites saludables y prevenir el agotamiento crónico en equipos de alto rendimiento.
-                  </p>
                 </div>
-              </div>
-            </RevealOnScroll>
+              </RevealOnScroll>
+            </div>
+          </div>
+
+          {/* CATEGORY 2: SALUD ORGANIZACIONAL (CONSCIOUS TEAMS) */}
+          <div className="mt-20">
+            <div className="flex items-center gap-3 mb-8">
+              <span className="bg-[#E9F5DB] text-[#365314] text-[10px] font-bold px-4 py-2 rounded-full uppercase tracking-widest border border-[#d3e8b9]">
+                Módulo B
+              </span>
+              <h3 className="text-xl font-medium text-slate-900 tracking-tight">
+                Rendimiento Organizacional (Conscious Teams)
+              </h3>
+            </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {/* Taller 3: Mindfulness -> Entrenamiento de Foco */}
+              <RevealOnScroll>
+                <div className="bg-[#F8F8F8] p-8 rounded-[2.5rem] relative overflow-hidden group hover:shadow-lg transition-all duration-300 flex flex-col h-full aspect-square min-h-[320px]">
+                  <svg className="absolute top-0 left-0 w-full h-full opacity-70" viewBox="0 0 400 300" preserveAspectRatio="none" style={{ pointerEvents: 'none' }}>
+                    <path d="M420,30 C360,5 280,20 240,5 C200,-10 160,5 120,20 C80,35 40,25 -20,40" stroke="#D0E3F5" strokeWidth="18" fill="none" strokeLinecap="round" />
+                  </svg>
+                  <div className="relative z-10 flex flex-col flex-grow justify-end">
+                    <div className="flex items-start justify-between mb-auto">
+                      <div className="w-12 h-12 rounded-full bg-white border-2 border-slate-200 flex items-center justify-center group-hover:border-slate-300 transition-colors">
+                        <Brain size={20} className="text-slate-700" />
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="text-xs font-medium text-slate-500 uppercase tracking-wider">Productividad</span>
+                      <span className="text-xs text-slate-300">•</span>
+                      <span className="text-xs font-medium text-slate-500">2 horas</span>
+                    </div>
+                    <h3 className="text-2xl font-medium text-black mb-3 leading-tight">Entrenamiento de Atención y Foco</h3>
+                    <p className="text-slate-500 text-base mb-0 leading-relaxed font-normal">
+                      Más que meditación: herramientas para gestionar la fatiga digital y mejorar la capacidad de concentración profunda (Deep Work).
+                    </p>
+                  </div>
+                </div>
+              </RevealOnScroll>
+
+              {/* NEW: Pausas Activas y Dinámicas Grupales */}
+              <RevealOnScroll delay={100}>
+                <div className="bg-[#F8F8F8] p-8 rounded-[2.5rem] relative overflow-hidden group hover:shadow-lg transition-all duration-300 flex flex-col h-full aspect-square min-h-[320px]">
+                  <svg className="absolute top-0 left-0 w-full h-full opacity-70" viewBox="0 0 400 300" preserveAspectRatio="none" style={{ pointerEvents: 'none' }}>
+                    <path d="M-20,60 C100,15 220,15 340,40 C360,45 370,50 420,55" stroke="#D0E3F5" strokeWidth="18" fill="none" strokeLinecap="round" />
+                  </svg>
+                  <div className="relative z-10 flex flex-col flex-grow justify-end">
+                    <div className="flex items-start justify-between mb-auto">
+                      <div className="w-12 h-12 rounded-full bg-white border-2 border-slate-200 flex items-center justify-center group-hover:border-slate-300 transition-colors">
+                        <Activity size={20} className="text-slate-700" />
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="text-xs font-medium text-slate-500 uppercase tracking-wider">Engagement</span>
+                      <span className="text-xs text-slate-300">•</span>
+                      <span className="text-xs font-medium text-slate-500">Periódico</span>
+                    </div>
+                    <h3 className="text-2xl font-medium text-black mb-3 leading-tight">Pausas Activas y Dinámicas de Integración</h3>
+                    <p className="text-slate-500 text-base mb-0 leading-relaxed font-normal">
+                      Instancias lúdicas semanales: estiramientos, dinámicas grupales y juegos para afiatar equipos y reducir el sedentarismo emocional.
+                    </p>
+                  </div>
+                </div>
+              </RevealOnScroll>
+
+              {/* NEW: Retiros Conscientes y Team Building */}
+              <RevealOnScroll delay={200}>
+                <div className="bg-[#F8F8F8] p-8 rounded-[2.5rem] relative overflow-hidden group hover:shadow-lg transition-all duration-300 flex flex-col h-full aspect-square min-h-[320px]">
+                  <svg className="absolute top-0 left-0 w-full h-full opacity-70" viewBox="0 0 400 300" preserveAspectRatio="none" style={{ pointerEvents: 'none' }}>
+                    <path d="M-20,80 C80,20 160,20 240,40 C320,60 360,50 420,70" stroke="#D0E3F5" strokeWidth="18" fill="none" strokeLinecap="round" />
+                  </svg>
+                  <div className="relative z-10 flex flex-col flex-grow justify-end">
+                    <div className="flex items-start justify-between mb-auto">
+                      <div className="w-12 h-12 rounded-full bg-white border-2 border-slate-200 flex items-center justify-center group-hover:border-slate-300 transition-colors">
+                        <Sparkles size={20} className="text-slate-700" />
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="text-xs font-medium text-slate-500 uppercase tracking-wider">Cultura</span>
+                      <span className="text-xs text-slate-300">•</span>
+                      <span className="text-xs font-medium text-slate-500">1-2 días</span>
+                    </div>
+                    <h3 className="text-2xl font-medium text-black mb-3 leading-tight">Retiros de Equipos Conscientes</h3>
+                    <p className="text-slate-500 text-base mb-0 leading-relaxed font-normal">
+                      Experiencias fuera del entorno laboral: dinámicas de propósito, coherencia y valores para generar vínculos humanos profundos.
+                    </p>
+                  </div>
+                </div>
+              </RevealOnScroll>
+            </div>
           </div>
         </div>
       </Section>
@@ -480,27 +443,27 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onBack, onContact, c
       <Section className="bg-white py-0">
         <div className="max-w-[1400px] mx-auto">
           <RevealOnScroll>
-            <div className="relative w-full h-[600px] md:h-[700px] rounded-[2.5rem] overflow-hidden">
-              {/* Background Image */}
+            <div className="relative w-full h-[500px] md:h-[600px] rounded-[2.5rem] overflow-hidden">
+              {/* Background Image - Latina Professional - Pushed further right */}
               <img
-                src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=1400"
-                alt="Profesional de salud mental"
-                className="w-full h-full object-cover"
+                src="/images/latina-professional-health.png"
+                alt="Profesional asignado a la organización"
+                className="w-full h-full object-cover object-[85%_center]"
               />
 
               {/* White Overlay Box - Bottom Left */}
               <div className="absolute bottom-8 left-8 md:bottom-12 md:left-12 max-w-md bg-white rounded-[2rem] p-8 shadow-2xl">
                 <h2 className="text-2xl md:text-3xl font-medium tracking-tight mb-4 text-slate-900 leading-tight">
-                  Acompañamiento <span className="bg-[#E9F5DB] px-3 py-0.5 rounded-xl inline-block text-slate-900">organizacional</span>
+                  Rendimiento <span className="bg-[#E9F5DB] px-3 py-0.5 rounded-xl inline-block text-slate-900">organizacional</span>
                 </h2>
 
                 <p className="text-slate-600 mb-6 leading-relaxed text-base font-medium">
-                  Asignamos un profesional fijo a tu equipo que entiende el contexto, la cultura y la historia. Es como tener un psicólogo in-house, pero flexible.
+                  Asignamos un profesional dedicado a tu organización que entiende el contexto, la cultura y la historia. Una pieza clave integrada a tu equipo, pero con la flexibilidad de Calibre.
                 </p>
 
                 <div className="space-y-3 mb-6">
                   {[
-                    "Mismo terapeuta para todo el equipo",
+                    "Mismo profesional asignado para todo el equipo",
                     "Conoce la cultura y dinámicas internas",
                     "Disponibilidad flexible y continua"
                   ].map((item, idx) => (
@@ -528,13 +491,11 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onBack, onContact, c
       </Section>
 
       {/* Lo que nos distingue */}
-      <Section className="bg-[#F8FAFC] py-20">
+      <Section className="bg-[#F8FAFC] py-12 md:py-24">
         <div className="max-w-[1400px] mx-auto px-6">
           <RevealOnScroll>
             <div className="text-center mb-12">
-              <div className="text-slate-500 text-sm font-bold uppercase tracking-wider mb-4">
-                • LO QUE NOS DISTINGUE
-              </div>
+
               <h2 className="text-3xl md:text-5xl font-medium tracking-tight mb-12 text-slate-900 leading-tight">
                 Calibre <span className="bg-[#E9F5DB] px-3 py-0.5 rounded-xl inline-block text-slate-900">te cubre</span>
               </h2>
@@ -562,28 +523,45 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onBack, onContact, c
             ))}
           </div>
 
-          {/* Lo que NO ofrecemos */}
+          {/* Garantía de Seguridad y Límites (Refined to Ayarx Style) */}
           <RevealOnScroll>
-            <div className="bg-white rounded-[2.5rem] p-10 shadow-lg border border-slate-100">
-              <div className="text-center mb-8">
-                <div className="text-slate-500 text-sm font-bold uppercase tracking-wider mb-4">
-                  Lo que NO ofrecemos
-                </div>
-              </div>
+            <div className="bg-white rounded-[3.5rem] p-8 md:p-12 shadow-sm relative overflow-hidden group border border-slate-100 mx-auto max-w-[1300px]">
+              {/* Abstract decorative background - Subtler */}
+              <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[#E9F5DB]/20 rounded-full blur-[100px] -mr-48 -mt-48 pointer-events-none"></div>
 
-              <div className="flex flex-wrap justify-center gap-4">
-                {[
-                  "Bienestar genérico",
-                  "Mindfulness universal",
-                  "Charlas sin seguimiento",
-                  "Cursos grabados",
-                  "Promesas mágicas"
-                ].map((item, idx) => (
-                  <div key={idx} className="flex items-center gap-2 px-4 py-2 rounded-full bg-slate-50 border border-slate-200">
-                    <X size={16} className="text-slate-400" />
-                    <span className="text-sm font-bold text-slate-500">{item}</span>
+              <div className="relative z-10 grid md:grid-cols-12 gap-8 items-center">
+                <div className="md:col-span-12 mb-2 text-center md:text-left">
+
+                  <h2 className="text-3xl md:text-5xl lg:text-[46px] font-normal text-slate-900 mb-8 tracking-tight leading-[1.2]">
+                    Límites claros para la <br />
+                    <span className="bg-[#E9F5DB] px-3 py-0.5 rounded-xl inline-block mt-2 text-slate-900">seguridad de tu equipo.</span>
+                  </h2>
+                </div>
+
+                <div className="md:col-span-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                  {[
+                    { title: "No es Terapia", desc: "Instancias de regulación y aprendizaje, no sesiones abiertas." },
+                    { title: "Sin Obligación", desc: "Nadie es forzado a compartir experiencias personales o vulnerables." },
+                    { title: "Espacios Cuidados", desc: "Facilitadores profesionales que aseguran el respeto y la confidencialidad." },
+                    { title: "Foco en el Rol", desc: "Trabajamos sobre la persona dentro de su contexto profesional." }
+                  ].map((item, idx) => (
+                    <div key={idx} className="bg-[#F8F8F8] p-6 rounded-[2rem] border border-slate-100 hover:bg-white hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-500 group/card">
+                      <div className="flex items-center gap-3 text-[#141414] mb-4">
+                        <CheckCircle2 size={18} className="text-slate-400 group-hover/card:text-[#84cc16] transition-colors" strokeWidth={2.5} />
+                        <h4 className="font-bold text-base text-slate-900 tracking-tight">{item.title}</h4>
+                      </div>
+                      <p className="text-slate-500 text-[13px] leading-relaxed font-medium">{item.desc}</p>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="md:col-span-12 mt-8 pt-8 border-t border-slate-100 flex flex-col md:flex-row items-center justify-between gap-6">
+                  <div className="max-w-xl text-center md:text-left">
+                    <h4 className="text-slate-900 font-bold mb-1 tracking-tight text-sm">Transparencia Organizacional</h4>
+                    <p className="text-slate-500 text-xs font-medium">¿Cómo medimos el éxito? Entregamos reportes de impacto anónimos para la gerencia sin comprometer la privacidad individual.</p>
                   </div>
-                ))}
+                  <Button onClick={onContact} variant="primary" className="px-10 py-4 text-xs rounded-full shadow-xl shadow-slate-900/5 hover:scale-105">Agendar Consulta Técnica</Button>
+                </div>
               </div>
             </div>
           </RevealOnScroll>
@@ -601,14 +579,14 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onBack, onContact, c
                 ¿Listo para transformar el <span className="bg-[#E9F5DB] px-3 py-0.5 rounded-xl inline-block mt-1 text-slate-900">bienestar de tu equipo?</span>
               </h2>
               <p className="text-slate-500 mb-8 font-medium text-lg leading-relaxed">
-                Agenda una llamada de 15 minutos para obtener una propuesta a medida y un diagnóstico inicial sin costo.
+                Agenda una llamada de 15 minutos para evitar la rotación y recuperar el foco de tu equipo.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button onClick={onContact} variant="primary" withArrow>
                   Solicitar Propuesta
                 </Button>
                 <Button onClick={() => navigate('/diagnostico')} variant="lime" withArrow>
-                  Ver Diagnóstico
+                  Ver Radar de Impacto
                 </Button>
               </div>
             </div>
