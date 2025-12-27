@@ -1,3 +1,4 @@
+/// <reference types="vite/client" />
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Section } from './Section';
@@ -103,7 +104,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onBack, onContact, c
               <RevealOnScroll>
                 <div className="relative rounded-[3rem] overflow-hidden h-[750px] w-full shadow-2xl border border-slate-100">
                   <img
-                    src="/images/latino-psychologist.png"
+                    src={`${import.meta.env.BASE_URL}images/latino-psychologist.png`}
                     className="h-full w-full object-cover object-center transition-transform duration-1000 hover:scale-105"
                     alt="Psicólogo Profesional"
                   />
@@ -446,7 +447,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onBack, onContact, c
             <div className="relative w-full h-[500px] md:h-[600px] rounded-[2.5rem] overflow-hidden">
               {/* Background Image - Latina Professional - Pushed further right */}
               <img
-                src="/images/latina-professional-health.png"
+                src={`${import.meta.env.BASE_URL}images/latina-professional-health.png`}
                 alt="Profesional asignado a la organización"
                 className="w-full h-full object-cover object-[85%_center]"
               />

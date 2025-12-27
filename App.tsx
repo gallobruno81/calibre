@@ -1,3 +1,4 @@
+/// <reference types="vite/client" />
 import React, { useState, Suspense, lazy, useEffect } from 'react';
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import { RadarEvolution } from './components/RadarEvolution';
@@ -62,7 +63,7 @@ const therapistsData: Therapist[] = [
     role: 'Consultora Clínica Senior',
     specialty: 'Regulación del Sistema Nervioso y Burnout',
     experience: '15 años',
-    image: '/images/mariana.png',
+    image: `${import.meta.env.BASE_URL}images/mariana.png`,
     education: 'UBA, Posgrado en Terapia Cognitivo Conductual',
     bio: 'Especialista en el impacto fisiológico del estrés crónico. Mariana ha liderado programas de intervención en crisis para multinacionales tecnológicas, enfocándose en herramientas somáticas para desactivar la respuesta de lucha-huida en ejecutivos de alto rendimiento.'
   },
@@ -72,7 +73,7 @@ const therapistsData: Therapist[] = [
     role: 'Médico Ocupacional',
     specialty: 'Manejo de ansiedad y sueño',
     experience: '12 años',
-    image: '/images/alejandro.png',
+    image: `${import.meta.env.BASE_URL}images/alejandro.png`,
     education: 'UNAM, Máster en Salud Ocupacional',
     bio: 'Alejandro combina la psiquiatría clásica con la medicina del estilo de vida. Su enfoque no farmacológico prioriza la higiene del sueño y los ritmos circadianos para restaurar la capacidad cognitiva y reducir la irritabilidad en equipos de trabajo.'
   },
@@ -82,7 +83,7 @@ const therapistsData: Therapist[] = [
     role: 'Especialista en Neurociencia',
     specialty: 'Entrenamiento atencional',
     experience: '10 años',
-    image: '/images/sofia.png',
+    image: `${import.meta.env.BASE_URL}images/sofia.png`,
     education: 'Universidad de Palermo, Certificación en Biofeedback',
     bio: 'Experta en rehabilitación cognitiva aplicada al trabajo. Sofía diseña protocolos de "Atención Activa" que ayudan a recuperar la capacidad de concentración profunda (Deep Work) erosionada por la hiperconexión digital.'
   },
@@ -92,7 +93,7 @@ const therapistsData: Therapist[] = [
     role: 'Consultor Sistémico',
     specialty: 'Dinámicas de equipo',
     experience: '18 años',
-    image: '/images/tomas.png',
+    image: `${import.meta.env.BASE_URL}images/tomas.png`,
     education: 'Universidad de Miami, Especialización en Sistemas',
     bio: 'Tomás trabaja sobre los "nudos invisibles" en la comunicación de equipos. Su intervención ayuda a desarticular patrones de conflicto pasivo-agresivos y a establecer acuerdos de convivencia claros y sostenibles.'
   }

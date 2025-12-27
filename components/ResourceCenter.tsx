@@ -1,3 +1,4 @@
+/// <reference types="vite/client" />
 import React, { useState } from 'react';
 import { Section } from './Section';
 import { Button } from './Button';
@@ -36,7 +37,7 @@ const resources: Resource[] = [
         title: 'Cuatro Niveles de Compromiso',
         category: 'Cultura',
         type: 'Article',
-        image: '/images/engagement-curve.png',
+        image: `${import.meta.env.BASE_URL}images/engagement-curve.png`,
         description: 'Desde los que contribuyen mínimamente hasta las superestrellas, comprende el espectro del compromiso laboral.',
         readTime: '5 min lectura',
         content: (
@@ -46,7 +47,7 @@ const resources: Resource[] = [
                 </p>
 
                 <div className="my-12 rounded-[2rem] overflow-hidden shadow-2xl shadow-slate-200 border border-slate-100">
-                    <img src="/images/engagement-curve.png" alt="Curva de Compromiso" className="w-full h-auto" />
+                    <img src={`${import.meta.env.BASE_URL}images/engagement-curve.png`} alt="Curva de Compromiso" className="w-full h-auto" />
                     <div className="bg-slate-50 p-4 text-center text-sm text-slate-500 font-medium">
                         La Curva de Compromiso Laboral
                     </div>
